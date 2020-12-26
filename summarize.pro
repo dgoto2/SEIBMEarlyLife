@@ -84,7 +84,6 @@ data[20,*]=inds[33,daydata]; mean bath depth before settlement
 all_ids=inds[29,daydata]
       
 ; 1.all fish
-
 for i=0,20 do begin
     PosValue0 = where(data[i,*] gt 0, PosValue0count)
     IF PosValue0count gt 0 then output[i,0]=mean(data[i,PosValue0])
