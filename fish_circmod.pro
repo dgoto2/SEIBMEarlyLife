@@ -1,6 +1,6 @@
-function awf_circmod, year_data, scenario
+function fish_circmod, year_data, scenario
 
-;pro awf_circmod, year_data; FOR TESTING ONLY
+;pro fish_circmod, year_data; FOR TESTING ONLY
 
 circdata= year_data; 35802000L
 ;Particle id, simulation day, x-location, y-location, latitude, longitude, bathymetric depth, depth below surface, temperature
@@ -41,15 +41,12 @@ IF Scenario EQ 'Pval_HighInc+Pred_HighDec' THEN cut = 20.
 print, 'larva size threshold', cut
 
 preyed=2150.0
-
 ;st=3315
 nParticle=99450L
-
 ;lengths=fltarr(st)+4
 ;weights=fltarr(st)+0.0002
 lengths=fltarr(nParticle)+4
 weights=fltarr(nParticle)+0.0002
-
 struc=(1-0.0253*(lengths^0.6547))*weights
 store=0.0253*(lengths^0.6547)*weights
 
@@ -108,9 +105,7 @@ for day=1L,trackdays do begin
 
     daydata=circdata[*, j:k]
     daydata1=daydata[*, 0L:nParticle-1L]
-    
     ;print, daydata[*, 99449L:397799L:99450L]
-    
     ;print, (inds[*, 99449L])     
     
     IF Day eq 1L then begin
@@ -223,8 +218,7 @@ for day=1L,trackdays do begin
 ;          ;Mean Vertical Depth Before Settlement = 27
 ;          ;Mean Bathymetric depth before settlement = 28                       
 ;        endif
-       
-        
+         
         for i=0L, 99449L do begin
           if (settle[i] eq 0.) and (actinds[i] ge 1.) then begin
             temps2[i]=(temps2[i]+temps[i]);/(DAY-(inds[14,i]-166L))
@@ -285,8 +279,7 @@ for day=1L,trackdays do begin
 
     ActPart = WHERE(actinds GT 0., actcount)
     
-    IF actcount GT 0L then inds[30, ActPart] = day - (inds[14, ActPart] - 166L)
-    
+    IF actcount GT 0L then inds[30, ActPart] = day - (inds[14, ActPart] - 166L)    
     ;IF actcount GT 0L then print,transpose(inds[30, ActPart[3000:3299L]])
     ;IF actcount GT 0L  and day gt 25 then print,transpose(inds[30, ActPart[50000:50299L]])
 
@@ -307,7 +300,6 @@ for day=1L,trackdays do begin
         inds[24, ActPart[Act60]]=lengths[ActPart[Act60]]
       ENDIF    
     ENDIF
-    
     
 ;    IF actcount GT 0L then begin
 ;     IF day eq 15 then begin
@@ -333,7 +325,6 @@ for day=1L,trackdays do begin
         inds[7, ActPart]=no_fish[ActPart]
      ;endif
     ;endif
-    
 ;    print, (inds[*, 99449L]) 
   endfor
 
@@ -370,6 +361,6 @@ for day=1L,trackdays do begin
 ;Particle region ID = 29
 ;days since release
 
-print, 'end of awf_circmod'
+print, 'end of fish_circmod'
 return, inds
 end

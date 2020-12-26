@@ -1,9 +1,9 @@
 Pro extract
 
 ; set the directory 
-CD, 'D:\alewife_seibm'; Directory; F:\SNS_SEIBM
+CD, 'D:\earlylife_seibm'; Directory
 
-;file = FILEPATH('alewife1998_whole.dat', Root_dir = 'C:', SUBDIR = 'Users\DGOTO\IDLWorkspace80\AlewifeCirc')
+;file = FILEPATH('1998_whole.dat', Root_dir = 'C:', SUBDIR = 'IDLWorkspace80\FishCirc')
 
 ; cutoff size for transport
 ;Scenario1 = 'Baseline10mm_Depth_pval'
@@ -51,7 +51,7 @@ arr=fltarr(10,35802000L)
 arr[0:8,*]=array
 ;arr[9, *]=(indgen(3315)+1L) # REPLICATE(1., 90*4*30L)
 
-output=awf_circmod(arr, scenario)
+output=fish_circmod(arr, scenario)
 summary=summarize(output, Filename98sum)
 
 ; Export the output
@@ -85,7 +85,7 @@ Year='1999_'
 Filename99=Year+Scenario+'_output.csv'
 Filename99sum=Year+Scenario+'_summary.csv'
 
-;openr, lun, 'alewife1999_whole.dat', /GET_LUN
+;openr, lun, '1999_whole.dat', /GET_LUN
 openr, lun, 'inputfiles\AW_PHYS_1999s.dat', /GET_LUN
 ;array=fltarr(9,2095080)
 array=fltarr(9,35802000L)
